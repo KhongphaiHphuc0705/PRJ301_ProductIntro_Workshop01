@@ -1,0 +1,82 @@
+<%-- any content can be specified here e.g.: --%>
+<%@ page pageEncoding="UTF-8" %>
+<c:if test="${sessionScope.loginUser == null}">
+    <jsp:forward page="Login.jsp"></jsp:forward>
+</c:if>
+<nav class="bg-gray-900 text-white px-8 py-4 flex items-center justify-between">
+  <div class="text-gray-400 flex items-center space-x-3 w-full">
+    <div class="text-white text-xl">
+        <a href="index.jsp">Welcome to <strong style="color: red">${loginUser.account}</strong> [${loginUser.lastName} ${loginUser.firstName}]</a>
+    </div>
+    
+    <ul class="flex items-center space-x-6">
+      <li class="text-lg hover:bg-gray-800 hover:text-white px-3 py-2 rounded-lg"><a href="index.jsp">Home</a></li>
+      <li class="relative">
+        <a id="accountsToggle" class="hover:text-white hover:bg-gray-800 px-3 py-2 rounded-lg flex items-center" href="#">Accounts</a>
+        <div id="accountsDropdown" class="absolute hidden bg-white text-gray-900 rounded-lg shadow-lg mt-2 w-48">
+          <a href="AddAccount" class="block px-4 py-2 hover:bg-gray-200 hover:rounded-lg">Add new account</a>
+          <a href="ListAccount" class="block px-4 py-2 hover:bg-gray-200 hover:rounded-lg">List of account</a>
+        </div>
+      </li>
+      <li class="relative">
+        <a id="categoriesToggle" class="hover:text-white hover:bg-gray-800 px-3 py-2 rounded-lg flex items-center" href="#">Categories</a>
+        <div id="categoriesDropdown" class="absolute hidden bg-white text-gray-900 rounded-lg shadow-lg mt-2 w-48">
+          <a href="AddCategory" class="block px-4 py-2 hover:bg-gray-200 hover:rounded-lg">Add new category</a>
+          <a href="ListCategories" class="block px-4 py-2 hover:bg-gray-200 hover:rounded-lg">List of categories</a>
+        </div>
+      </li>
+      <li class="relative">
+        <a id="productsToggle" class="hover:text-white hover:bg-gray-800 px-3 py-2 rounded-lg flex items-center" href="#">Products</a>
+        <div id="productsDropdown" class="absolute hidden bg-white text-gray-900 rounded-lg shadow-lg mt-2 w-48">
+          <a href="AddProduct" class="block px-4 py-2 hover:bg-gray-200 hover:rounded-lg">Add new product</a>
+          <a href="ListProduct" class="block px-4 py-2 hover:bg-gray-200 hover:rounded-lg">List of products</a>
+        </div>
+      </li>
+    </ul>
+    
+    <div class="text-lg hover:bg-gray-800 hover:text-white px-3 py-2 rounded-lg ml-auto">
+      <a href="Logout" class="flex gap-2">
+          <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12H4m12 0-4 4m4-4-4-4m3-4h2a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3h-2"/>
+          </svg>
+          Logout
+      </a>
+    </div>
+  </div>
+</nav>
+
+<script>
+  const setupDropdown = (toggleId, dropdownId, allDropdowns) => {
+    const toggle = document.getElementById(toggleId);
+    const dropdown = document.getElementById(dropdownId);
+
+    toggle.addEventListener("click", (event) => {
+      event.stopPropagation();
+      allDropdowns.forEach(({ toggle, dropdown }) => {
+        if (dropdown.id !== dropdownId) {
+          dropdown.classList.add("hidden");
+        }
+      });
+      dropdown.classList.toggle("hidden");
+    });
+
+    document.addEventListener("click", (event) => {
+      if (!toggle.contains(event.target) && !dropdown.contains(event.target)) {
+        dropdown.classList.add("hidden");
+      }
+    });
+  }
+
+  const dropdowns = [
+    { toggle: "accountsToggle", dropdown: "accountsDropdown" },
+    { toggle: "categoriesToggle", dropdown: "categoriesDropdown" },
+    { toggle: "productsToggle", dropdown: "productsDropdown" },
+  ];
+
+  dropdowns.forEach(({ toggle, dropdown }) => {
+    setupDropdown(toggle, dropdown, dropdowns.map(({ toggle, dropdown }) => ({
+      toggle: document.getElementById(toggle),
+      dropdown: document.getElementById(dropdown)
+    })));
+  });
+</script>
