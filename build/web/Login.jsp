@@ -4,6 +4,7 @@
     Author     : Windows
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -32,6 +33,9 @@
                            class="w-full px-4 py-2 mt-1 border rounded-lg focus:outline-none 
                                   focus:ring-2 focus:ring-emerald-300 transition duration-500 ease-in-out">
                 </div>
+                <c:if test="${error != null}">
+                    <h2 class="text-md text-red-500 text-center px-4 py-2">${error}</h2>
+                </c:if>
                 <div class="flex items-center justify-between mb-4">
                     <label>
                         <input type="checkbox">
