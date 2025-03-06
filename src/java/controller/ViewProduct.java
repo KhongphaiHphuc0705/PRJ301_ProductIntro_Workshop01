@@ -12,16 +12,15 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import model.dao.AccountDAO;
-import model.dto.Account;
+import model.dao.ProductDAO;
+import model.dto.Product;
 
 /**
  *
  * @author Windows
  */
-@WebServlet(name = "LoginController", urlPatterns = {"/Login"})
-public class LoginController extends HttpServlet {
+@WebServlet(name = "ViewProduct", urlPatterns = {"/ViewProduct"})
+public class ViewProduct extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,6 +33,7 @@ public class LoginController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
         
     }
 
@@ -49,7 +49,14 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("Login.jsp").forward(request, response);
+        String productId = request.getParameter("productId");
+
+        ProductDAO productDAO = new ProductDAO();
+        Product product = productDAO.getObjectById(productId);
+
+        request.setAttribute("product", product);
+
+        request.getRequestDispatcher("ViewProduct.jsp").forward(request, response);
     }
 
     /**
@@ -63,24 +70,8 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            response.setContentType("text/html;charset=UTF-8");
-            request.setCharacterEncoding("UTF-8");
-            String username = request.getParameter("account").trim();
-            String password = request.getParameter("pass").trim();
-            Account x = new AccountDAO().loginSuccess(username, password);
-            HttpSession session = request.getSession();
-            if (x != null) {
-                session.setAttribute("loginUser", x);
-                request.getRequestDispatcher("index.jsp").forward(request, response);
-            } else {
-                request.setAttribute("error", "Invalid login information.");
-                request.getRequestDispatcher("Login.jsp").forward(request, response);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    } 
+        processRequest(request, response);
+    }
 
     /**
      * Returns a short description of the servlet.

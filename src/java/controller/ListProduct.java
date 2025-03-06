@@ -52,7 +52,20 @@ public class ListProduct extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String search = request.getParameter("search");
+        ProductDAO x = new ProductDAO();
+        List<Product> products;
+        
+        if (search != null && !search.trim().isEmpty()) {
+            System.out.println("Search query: " + search);
+            products = x.searchByName(search.trim());
+        } else {
+            products = x.listAll();
+        }
+        
+        request.setAttribute("listProduct", products);
+        request.setAttribute("search", search);
+        request.getRequestDispatcher("ListProduct.jsp").forward(request, response);
     }
 
     /**

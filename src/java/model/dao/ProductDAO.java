@@ -169,6 +169,36 @@ public class ProductDAO implements Accessible<Product> {
         } 
         return list;
     }
+    
+    public List<Product> searchByName(String search) {
+        List<Product> list = new ArrayList<>();
+        try {
+            con = new ConnectDB().getConnection();
+            String sqlString = "SELECT * FROM products WHERE productName LIKE ?";
+            PreparedStatement cmd = con.prepareStatement(sqlString);
+            cmd.setString(1, "%" + search + "%");
+            ResultSet rs = cmd.executeQuery();
+            while (rs.next()) {
+                Product x = new Product();
+                x.setProductId(rs.getString("productId"));
+                x.setProductName(rs.getString("productName"));
+                x.setProductImage(rs.getString("productImage"));
+                x.setBrief(rs.getString("brief"));
+                x.setPostedDate(rs.getDate("postedDate"));
+                Category c = new CategoryDAO().getObjectById(String.valueOf(rs.getInt("typeId")));
+                x.setType(c);
+                Account a = new AccountDAO().getObjectById(rs.getString("account"));
+                x.setAccount(a);
+                x.setUnit(rs.getString("unit"));
+                x.setPrice(rs.getInt("price"));
+                x.setDiscount(rs.getInt("discount"));
+                list.add(x);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
+    }
 
     @Override
     public List<Product> listAll() {
