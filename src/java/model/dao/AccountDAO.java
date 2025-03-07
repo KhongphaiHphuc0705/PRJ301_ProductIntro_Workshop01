@@ -160,6 +160,34 @@ public class AccountDAO implements Accessible<Account> {
         }
         return list;
     }
+    
+    public List<Account> searchByName(String search) {
+        List<Account> list = new ArrayList<>();
+        try {
+            con = new ConnectDB().getConnection();
+            String sqlString = "SELECT * FROM accounts WHERE lastName LIKE ?";
+            PreparedStatement cmd = con.prepareStatement(sqlString);
+            cmd.setString(1, "%" + search + "%");
+            ResultSet rs = cmd.executeQuery();
+            while (rs.next()) {
+                Account x = new Account();
+                x.setAccount(rs.getString("account"));
+                x.setPass(rs.getString("pass"));
+                x.setLastName(rs.getString("lastName"));
+                x.setFirstName(rs.getString("firstName"));
+                x.setBirthday(rs.getDate("birthday"));
+                x.setGender(rs.getBoolean("gender"));
+                x.setPhone(rs.getString("phone"));
+                x.setIsUse(rs.getBoolean("isUse"));
+                x.setRoleInSystem(rs.getInt("roleInSystem"));
+                list.add(x);
+            }
+            con.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
+    }
 
     @Override
     public List<Account> listAll() {

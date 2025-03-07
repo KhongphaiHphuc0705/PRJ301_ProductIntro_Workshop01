@@ -21,6 +21,19 @@
             <h1 class="text-3xl font-bold mt-4 mb-8 text-gray-100 text-center">
                 LIST OF ACCOUNTS IN SYSTEM
             </h1>
+            
+            <form action="ListAccount" method="GET" class="mb-4 flex justify-center">
+                <input type="text" name="search" placeholder="Search for accounts"
+                       class="w-full px-4 py-2 mt-1 border rounded-lg focus:outline-none placeholder-gray-400 
+                              text-gray-100 focus:ring-2 focus:ring-emerald-300 transition duration-500 ease-in-out" 
+                       value="${param.search}" autocomplete="off">
+                <button type="submit" class="ml-2 px-4 py-2 bg-emerald-500 text-white rounded-lg hover:bg-emerald-700">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                    </svg>
+                </button>
+            </form>
+                
             <table class="table-auto w-full border-collapse border-2 border-gray-300">
                 <thead>
                     <tr class="bg-gray-800 text-gray-100">

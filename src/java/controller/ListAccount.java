@@ -54,7 +54,20 @@ public class ListAccount extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String search = request.getParameter("search");
+        AccountDAO x = new AccountDAO();
+        List<Account> accounts;
+        
+        if (search != null && !search.trim().isEmpty()) {
+            System.out.println("Search query: " + search);
+            accounts = x.searchByName(search.trim());
+        } else {
+            accounts = x.listAll();
+        }
+        
+        request.setAttribute("listAccount", accounts);
+        request.setAttribute("search", search);
+        request.getRequestDispatcher("ListAccount.jsp").forward(request, response);
     }
 
     /**

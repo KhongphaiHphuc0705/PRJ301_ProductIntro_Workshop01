@@ -134,6 +134,7 @@ public class ProductDAO implements Accessible<Product> {
                 x.setDiscount(rs.getInt("discount"));
                 return x;
             }
+            con.close();
         } catch (SQLException ex) {
             Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -164,6 +165,7 @@ public class ProductDAO implements Accessible<Product> {
                 x.setDiscount(rs.getInt("discount"));
                 list.add(x);
             }
+            con.close();
         } catch (SQLException ex) {
             Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
         } 
@@ -194,6 +196,7 @@ public class ProductDAO implements Accessible<Product> {
                 x.setDiscount(rs.getInt("discount"));
                 list.add(x);
             }
+            con.close();
         } catch (SQLException ex) {
             Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
