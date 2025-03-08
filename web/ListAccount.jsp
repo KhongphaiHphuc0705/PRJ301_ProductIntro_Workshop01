@@ -22,7 +22,8 @@
                 LIST OF ACCOUNTS IN SYSTEM
             </h1>
             
-            <form action="ListAccount" method="GET" class="mb-4 flex justify-center">
+            <form action="MainController" method="GET" class="mb-4 flex justify-center">
+                <input type="hidden" name="action" value="ListAccount">
                 <input type="text" name="search" placeholder="Search for accounts"
                        class="w-full px-4 py-2 mt-1 border rounded-lg focus:outline-none placeholder-gray-400 
                               text-gray-100 focus:ring-2 focus:ring-emerald-300 transition duration-500 ease-in-out" 
@@ -56,16 +57,23 @@
                             <td class="border border-gray-300 px-4 py-2 text-gray-100 text-center">${x.phone}</td>
                             <td class="border border-gray-300 px-4 py-2 text-gray-100 text-center">${(x.roleInSystem == 1) ? 'Administrator' : 'Staff'}</td>
                             <td class="border border-gray-300 px-4 py-2 text-center">
-                                <c:url var="urlUpdate" value="UpdateAccount?account=${x.account}"></c:url>
+                                <c:url var="urlUpdate" value="MainController">
+                                    <c:param name="action" value="UpdateAccount" />
+                                    <c:param name="account" value="${x.account}" />
+                                </c:url>
                                 <a href="${urlUpdate}" class="px-3 py-1 mr-3 bg-blue-400 text-white rounded-lg hover:bg-blue-600 transition">Update</a>
-                                <c:url var="urlToggleStatus" value="ToggleStatus">
+                                <c:url var="urlToggleStatus" value="MainController">
+                                    <c:param name="action" value="ToggleStatus" />
                                     <c:param name="account" value="${x.account}" />
                                     <c:param name="isUse" value="${x.isUse}" />
                                 </c:url>
                                 <a href="${urlToggleStatus}" class="px-3 py-1 mr-3 bg-green-400 text-white rounded-lg hover:bg-green-600 transition">
                                     ${x.isUse ? 'Deactivate' : 'Activate'}
                                 </a>
-                                <c:url var="urlDelete" value="DeleteAccount?deleteAcc=${x.account}"></c:url>
+                                <c:url var="urlDelete" value="MainController">
+                                    <c:param name="action" value="DeleteAccount" />
+                                    <c:param name="account" value="${x.account}" />
+                                </c:url>
                                 <a href="${urlDelete}" class="px-3 py-1 bg-red-400 text-white rounded-lg hover:bg-red-600 transition">Delete</a>
                             </td>
                         </tr>

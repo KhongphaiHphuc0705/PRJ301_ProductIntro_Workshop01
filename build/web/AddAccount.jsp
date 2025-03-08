@@ -19,7 +19,8 @@
         <%@include file="Header.jspf" %>
         <div class="mx-auto p-6 bg-gray-800 shadow-lg min-h-screen">
             <h1 class="text-3xl font-bold mt-4 mb-8 text-gray-100 text-center">ADD NEW ACCOUNT</h1>
-            <form action="AddAccount" method="POST" class="space-y-4 border-2 border-white p-4 max-w-3xl mx-auto">
+            <form action="MainController" method="POST" class="space-y-4 border-2 border-white p-4 max-w-3xl mx-auto">
+                <input type="hidden" name="action" value="AddAccount">
                 <div class="form-group">
                     <label for="account" class="block font-medium text-gray-100">Account </label>
                     <input placeholder="Enter email" type="text" name="account" required

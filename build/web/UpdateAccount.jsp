@@ -29,7 +29,8 @@
             <h1 class="text-3xl font-bold mt-4 mb-8 text-gray-100 text-center">
                 UPDATE ACCOUNT
             </h1>
-            <form action="UpdateAccount" method="POST" class="space-y-4 border-2 border-white p-4 max-w-3xl mx-auto">
+            <form action="MainController" method="POST" class="space-y-4 border-2 border-white p-4 max-w-3xl mx-auto">
+                <input type="hidden" name="action" value="UpdateAccount">
                 <div class="form-group">
                     <label for="account" class="block font-medium text-gray-100">Account </label>
                     <input placeholder="Enter email" type="text" name="account" value="<%= acc.getAccount() %>" 

@@ -3,12 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Hphucc/Sem4_SP2025/PRJ301/Workshop01_Copy/src/java/controller/ListProduct.java</file>
+            <file>file:/D:/Hphucc/Sem4_SP2025/PRJ301/Workshop01_Copy/web/AddAccount.jsp</file>
             <file>file:/D:/Hphucc/Sem4_SP2025/PRJ301/Workshop01_Copy/web/ListAccount.jsp</file>
-            <file>file:/D:/Hphucc/Sem4_SP2025/PRJ301/Workshop01_Copy/src/java/controller/ListAccount.java</file>
-            <file>file:/D:/Hphucc/Sem4_SP2025/PRJ301/Workshop01_Copy/web/ListProduct.jsp</file>
-            <file>file:/D:/Hphucc/Sem4_SP2025/PRJ301/Workshop01_Copy/src/java/model/dao/AccountDAO.java</file>
-            <file>file:/D:/Hphucc/Sem4_SP2025/PRJ301/Workshop01_Copy/src/java/model/dao/ProductDAO.java</file>
+            <file>file:/D:/Hphucc/Sem4_SP2025/PRJ301/Workshop01_Copy/web/Header.jspf</file>
+            <file>file:/D:/Hphucc/Sem4_SP2025/PRJ301/Workshop01_Copy/src/java/controller/MainController.java</file>
+            <file>file:/D:/Hphucc/Sem4_SP2025/PRJ301/Workshop01_Copy/src/java/controller/AccountController.java</file>
         </group>
     </open-files>
 </project-private>
