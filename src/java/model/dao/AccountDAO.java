@@ -165,9 +165,10 @@ public class AccountDAO implements Accessible<Account> {
         List<Account> list = new ArrayList<>();
         try {
             con = new ConnectDB().getConnection();
-            String sqlString = "SELECT * FROM accounts WHERE lastName LIKE ?";
+            String sqlString = "SELECT * FROM accounts WHERE lastName LIKE ? OR firstName LIKE ?";
             PreparedStatement cmd = con.prepareStatement(sqlString);
             cmd.setString(1, "%" + search + "%");
+            cmd.setString(2, "%" + search + "%");
             ResultSet rs = cmd.executeQuery();
             while (rs.next()) {
                 Account x = new Account();
