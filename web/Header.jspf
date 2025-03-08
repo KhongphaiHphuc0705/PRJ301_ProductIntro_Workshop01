@@ -22,7 +22,7 @@
         <a id="categoriesToggle" class="hover:text-white hover:bg-gray-800 px-3 py-2 rounded-lg flex items-center" href="#">Categories</a>
         <div id="categoriesDropdown" class="absolute hidden bg-white text-gray-900 rounded-lg shadow-lg mt-2 w-48">
           <a href="MainController?action=AddCategory" class="block px-4 py-2 hover:bg-gray-200 hover:rounded-lg">Add new category</a>
-          <a href="MainController?action=ListCategories" class="block px-4 py-2 hover:bg-gray-200 hover:rounded-lg">List of categories</a>
+          <a href="MainController?action=ListCategory" class="block px-4 py-2 hover:bg-gray-200 hover:rounded-lg">List of categories</a>
         </div>
       </li>
       <li class="relative">

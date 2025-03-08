@@ -60,9 +60,10 @@ public class MainController extends HttpServlet {
             case "ViewProduct":
                 url = "ProductController";
                 break;
-            case "ListCategories":
+            case "ListCategory":
             case "AddCategory":
             case "DeleteCategory":
+            case "UpdateCategory":
                 url = "CategoryController";
                 break;
             default:

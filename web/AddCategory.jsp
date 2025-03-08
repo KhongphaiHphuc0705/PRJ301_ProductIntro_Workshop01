@@ -19,7 +19,8 @@
         <%@include file="Header.jspf" %>
         <div class="mx-auto p-6 bg-gray-800 shadow-lg min-h-screen">
             <h1 class="text-3xl font-bold mt-4 mb-8 text-gray-100 text-center">ADD NEW CATEGORY</h1>
-            <form action="AddCategory" method="POST" class="space-y-4 border-2 border-white p-4 max-w-3xl mx-auto">
+            <form action="MainController" method="POST" class="space-y-4 border-2 border-white p-4 max-w-3xl mx-auto">
+                <input type="hidden" name="action" value="AddCategory">
                 <div class="form-group">
                     <label for="categoryName" class="block font-medium text-gray-100">Category name: </label>
                     <input type="text" name="categoryName" class="w-full px-4 py-2 mt-4 border border-gray-100 

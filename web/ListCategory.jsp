@@ -37,9 +37,15 @@
                             <td class="border border-gray-300 px-4 py-2 text-gray-100 text-center">${x.categoryName}</td>
                             <td class="border border-gray-300 px-4 py-2 text-gray-100 xl:w-150 text-center">${x.memo}</td>
                             <td class="border border-gray-300 px-4 py-2 text-gray-100 text-center">
-                                <c:url var="urlUpdate" value="UpdateCategory?typeId=${x.typeId}"></c:url>
+                                <c:url var="urlUpdate" value="MainController">
+                                    <c:param name="action" value="UpdateCategory" />
+                                    <c:param name="typeId" value="${x.typeId}" />
+                                </c:url>
                                 <a href="${urlUpdate}" class="px-3 py-1 mr-3 bg-blue-400 text-white rounded-lg hover:bg-blue-600 transition">Update</a>
-                                <c:url var="urlDelete" value="DeleteCategory?deleteCtg=${x.typeId}"></c:url>
+                                <c:url var="urlDelete" value="MainController">
+                                    <c:param name="action" value="DeleteCategory" />
+                                    <c:param name="typeId" value="${x.typeId}" />
+                                </c:url>
                                 <a href="${urlDelete}" class="px-3 py-1 mr-3 bg-red-400 text-white rounded-lg hover:bg-red-600 transition">Delete</a>
                             </td>
                         </tr>

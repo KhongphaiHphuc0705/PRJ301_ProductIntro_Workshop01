@@ -28,7 +28,8 @@
             <h1 class="text-3xl font-bold mt-4 mb-8 text-gray-100 text-center">
                 UPDATE CATEGORY
             </h1>
-            <form action="UpdateCategory" method="POST" class="space-y-4 border-2 border-white p-4 max-w-3xl mx-auto">
+            <form action="MainController" method="POST" class="space-y-4 border-2 border-white p-4 max-w-3xl mx-auto">
+                <input type="hidden" name="action" value="UpdateCategory">
                 <input type="hidden" name="typeId" value="<%= x.getTypeId() %>">
                 <div class="form-group">
                     <label for="categoryName" class="block font-medium text-gray-100">Category name: </label>
