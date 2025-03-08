@@ -32,13 +32,12 @@ public class MainController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
         String action = request.getParameter("action");
         String url = "index.jsp";
         
         if (action == null)
             action = "home";
-        
-        System.out.println("Received action: " + action);
         
         switch (action) {
             case "login":
@@ -58,6 +57,7 @@ public class MainController extends HttpServlet {
             case "AddProduct":
             case "DeleteProduct":
             case "UpdateProduct":
+            case "ViewProduct":
                 url = "ProductController";
                 break;
             case "ListCategories":
@@ -68,8 +68,6 @@ public class MainController extends HttpServlet {
             default:
                 url = "index.jsp";
         }
-        
-        System.out.println("Forwarding to: " + url);
         
         request.getRequestDispatcher(url).forward(request, response);
     }

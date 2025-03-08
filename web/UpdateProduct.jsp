@@ -28,7 +28,9 @@
             <h1 class="text-3xl font-bold mt-4 mb-8 text-gray-100 text-center">
                 UPDATE PRODUCT
             </h1>
-            <form action="UpdateProduct" method="POST" class="space-y-4 border-2 border-white p-4 max-w-3xl mx-auto">
+            
+            <form action="MainController" method="POST" class="space-y-4 border-2 border-white p-4 max-w-3xl mx-auto">
+                <input type="hidden" name="action" value="UpdateProduct">
                 <div class="form-group">
                     <label for="productId" class="block font-medium text-gray-100">Product ID: </label>
                     <input type="text" name="productId" value="<%= x.getProductId() %>" class="w-full px-4 py-2 mt-4 border border-gray-100 rounded-lg 

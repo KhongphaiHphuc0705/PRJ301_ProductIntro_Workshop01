@@ -23,7 +23,8 @@
                 LIST OF PRODUCTS
             </h1>
             
-            <form action="ListProduct" method="POST" class="mb-4 flex justify-center">
+            <form action="MainController" method="GET" class="mb-4 flex justify-center">
+                <input type="hidden" name="action" value="ListProduct">
                 <input type="text" name="search" placeholder="Search for products"
                        class="w-full px-4 py-2 mt-1 border rounded-lg focus:outline-none placeholder-gray-400 
                               text-gray-100 focus:ring-2 focus:ring-emerald-300 transition duration-500 ease-in-out" 
@@ -52,7 +53,10 @@
                             </c:if>
                         <div class="flex-grow"></div>
                         <div class="mt-4 flex text-blue-400 hover:underline text-center self-center gap-2">
-                            <c:url var="urlDetails" value="ViewProduct?productId=${x.productId}"/>
+                            <c:url var="urlDetails" value="MainController">
+                                <c:param name="action" value="ViewProduct" />
+                                <c:param name="productId" value="${x.productId}" />
+                            </c:url>    
                             <a href="${urlDetails}">More Details </a>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" />

@@ -9,20 +9,8 @@
         <servlet-class>controller.AddCategory</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ListProduct</servlet-name>
-        <servlet-class>controller.ListProduct</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>AddProduct</servlet-name>
-        <servlet-class>controller.AddProduct</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>DeleteCategory</servlet-name>
         <servlet-class>controller.DeleteCategory</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>DeleteProduct</servlet-name>
-        <servlet-class>controller.DeleteProduct</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ListCategories</servlet-name>
@@ -33,20 +21,8 @@
         <url-pattern>/AddCategory</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ListProduct</servlet-name>
-        <url-pattern>/ListProduct</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>AddProduct</servlet-name>
-        <url-pattern>/AddProduct</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>DeleteCategory</servlet-name>
         <url-pattern>/DeleteCategory</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>DeleteProduct</servlet-name>
-        <url-pattern>/DeleteProduct</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

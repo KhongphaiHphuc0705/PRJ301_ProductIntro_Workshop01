@@ -19,17 +19,17 @@
         </div>
       </li>
       <li class="relative">
-        <a id="categoriesToggle" class="hover:text-white hover:bg-gray-800 px-3 py-2 rounded-lg flex items-center" href="MainController?action=category">Categories</a>
+        <a id="categoriesToggle" class="hover:text-white hover:bg-gray-800 px-3 py-2 rounded-lg flex items-center" href="#">Categories</a>
         <div id="categoriesDropdown" class="absolute hidden bg-white text-gray-900 rounded-lg shadow-lg mt-2 w-48">
-          <a href="AddCategory" class="block px-4 py-2 hover:bg-gray-200 hover:rounded-lg">Add new category</a>
-          <a href="ListCategories" class="block px-4 py-2 hover:bg-gray-200 hover:rounded-lg">List of categories</a>
+          <a href="MainController?action=AddCategory" class="block px-4 py-2 hover:bg-gray-200 hover:rounded-lg">Add new category</a>
+          <a href="MainController?action=ListCategories" class="block px-4 py-2 hover:bg-gray-200 hover:rounded-lg">List of categories</a>
         </div>
       </li>
       <li class="relative">
-        <a id="productsToggle" class="hover:text-white hover:bg-gray-800 px-3 py-2 rounded-lg flex items-center" href="MainController?action=product">Products</a>
+        <a id="productsToggle" class="hover:text-white hover:bg-gray-800 px-3 py-2 rounded-lg flex items-center" href="#">Products</a>
         <div id="productsDropdown" class="absolute hidden bg-white text-gray-900 rounded-lg shadow-lg mt-2 w-48">
-          <a href="AddProduct" class="block px-4 py-2 hover:bg-gray-200 hover:rounded-lg">Add new product</a>
-          <a href="ListProduct" class="block px-4 py-2 hover:bg-gray-200 hover:rounded-lg">List of products</a>
+          <a href="MainController?action=AddProduct" class="block px-4 py-2 hover:bg-gray-200 hover:rounded-lg">Add new product</a>
+          <a href="MainController?action=ListProduct" class="block px-4 py-2 hover:bg-gray-200 hover:rounded-lg">List of products</a>
         </div>
       </li>
     </ul>
