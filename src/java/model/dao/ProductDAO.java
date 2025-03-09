@@ -171,14 +171,64 @@ public class ProductDAO implements Accessible<Product> {
         } 
         return list;
     }
-    
-    public List<Product> searchByName(String search) {
+
+    public List<Product> searchProducts(String search, String range, String discount) {
         List<Product> list = new ArrayList<>();
         try {
             con = new ConnectDB().getConnection();
             String sqlString = "SELECT * FROM products WHERE productName LIKE ?";
+
+            if ("low".equals(range)) {
+                sqlString += " AND price < 5000000";
+            } else if ("medium".equals(range)) {
+                sqlString += " AND price BETWEEN 5000000 AND 15000000";
+            } else if ("high".equals(range)) {
+                sqlString += " AND price > 15000000";
+            }
+            
+            if ("yes".equals(discount)) {
+                sqlString += " AND discount > 0";
+            } else if ("no".equals(discount)) {
+                sqlString += " AND discount = 0";
+            }
+            
             PreparedStatement cmd = con.prepareStatement(sqlString);
             cmd.setString(1, "%" + search + "%");
+            ResultSet rs = cmd.executeQuery();
+            while (rs.next()) {
+                Product x = new Product();
+                x.setProductId(rs.getString("productId"));
+                x.setProductName(rs.getString("productName"));
+                x.setProductImage(rs.getString("productImage"));
+                x.setBrief(rs.getString("brief"));
+                x.setPostedDate(rs.getDate("postedDate"));
+                Category c = new CategoryDAO().getObjectById(String.valueOf(rs.getInt("typeId")));
+                x.setType(c);
+                Account a = new AccountDAO().getObjectById(rs.getString("account"));
+                x.setAccount(a);
+                x.setUnit(rs.getString("unit"));
+                x.setPrice(rs.getInt("price"));
+                x.setDiscount(rs.getInt("discount"));
+                list.add(x);
+            }
+            con.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
+    }
+    
+    public List<Product> sortByPrice(String order) {
+        List<Product> list = new ArrayList<>();
+        try {
+            con = new ConnectDB().getConnection();
+            String sqlString = "SELECT * FROM products";
+            if ("asc".equals(order)) {
+                sqlString += " ORDER BY price ASC";
+            } else if ("desc".equals(order)) {
+                sqlString += " ORDER BY price DESC";
+            }
+            PreparedStatement cmd = con.prepareStatement(sqlString);
             ResultSet rs = cmd.executeQuery();
             while (rs.next()) {
                 Product x = new Product();

@@ -23,19 +23,63 @@
                 LIST OF PRODUCTS
             </h1>
             
-            <form action="MainController" method="GET" class="mb-4 flex justify-center">
+            <form action="MainController" method="GET" class="mb-4 flex justify-center gap-3">
                 <input type="hidden" name="action" value="ListProduct">
                 <input type="text" name="search" placeholder="Search for products"
-                       class="w-full px-4 py-2 mt-1 border rounded-lg focus:outline-none placeholder-gray-400 
+                       class="px-4 py-2 mt-1 border rounded-lg focus:outline-none placeholder-gray-400 
                               text-gray-100 focus:ring-2 focus:ring-emerald-300 transition duration-500 ease-in-out" 
                        value="${param.search}" autocomplete="off">
+                
+                <select name="range" class="px-4 py-2 p-2 border rounded-lg 
+                            bg-gray-700 border-gray-600 text-gray-100">
+                    <option value="">Filter by price range</option>
+                    <option value="low" ${param.range == 'low' ? 'selected' : ''}>Below 5.000.000 (VNĐ)</option>
+                    <option value="medium" ${param.range == 'medium' ? 'selected' : ''}>From 5.000.000 to 15.000.000 (VNĐ)</option>
+                    <option value="high"${param.range == 'high' ? 'selected' : ''}>Above 15.000.000 (VNĐ)</option>
+                </select>
+                
+                <div class="flex items-center gap-2 text-gray-100">
+                    <label class="flex items-center gap-2">
+                        <input type="radio" name="discount" value="yes" ${param.discount == 'yes' ? 'checked' : ''}>
+                        Discounted
+                    </label>
+                    <label>
+                        <input type="radio" name="discount" value="no" ${param.discount == 'no' ? 'checked' : ''}>
+                        Not Discounted
+                    </label>
+                    <label>
+                        <input type="radio" name="discount" value="" ${param.discount == '' ? 'checked' : ''}>
+                        All
+                    </label>
+                </div>
+                
                 <button type="submit" class="ml-2 px-4 py-2 bg-emerald-500 text-white rounded-lg hover:bg-emerald-700">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                     <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
                     </svg>
                 </button>
             </form>
-                
+                        
+            <form action="MainController" method="GET" class="mb-4 flex justify-center items-center gap-4">
+                <input type="hidden" name="action" value="ListProduct" />
+                <button type="submit" name="sort" value="asc"
+                        class="px-4 py-2 bg-emerald-500 rounded-lg 
+                        hover:bg-emerald-700 flex items-center gap-1">
+                    Sort by Price
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 10.5 12 3m0 0 7.5 7.5M12 3v18" />
+                    </svg>
+                </button>
+                <button type="submit" name="sort" value="desc"
+                        class="px-4 py-2 bg-emerald-500 rounded-lg 
+                        hover:bg-emerald-700 flex items-center gap-1">
+                    Sort by Price
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3" />
+                    </svg>
+                </button>
+            </form>
+
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 mt-10">
                 <c:forEach var="x" items="${listProduct}">
                     <div class="bg-gray-700 p-4 rounded-lg shadow-lg flex flex-col justify-between h-full">

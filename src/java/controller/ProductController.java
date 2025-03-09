@@ -76,18 +76,41 @@ public class ProductController extends HttpServlet {
         ProductDAO productDAO = new ProductDAO();
         try {
             if ("AddProduct".equals(action)) {
+                List<Category> types = new CategoryDAO().listAll();
+                request.setAttribute("types", types);
                 request.getRequestDispatcher("AddProduct.jsp").forward(request, response);
             } else if ("ListProduct".equals(action)) {
                 String search = request.getParameter("search");
-                List<Product> products = (search != null && !search.trim().isEmpty())
-                                       ? productDAO.searchByName(search.trim())
-                                       : productDAO.listAll();
+                String range = request.getParameter("range");
+                String discount = request.getParameter("discount");
+                String sort = request.getParameter("sort");
+                
+                List<Product> products;
+                if ((search == null || search.trim().isEmpty()) &&
+                    (range == null || range.isEmpty()) &&
+                    (discount == null || discount.isEmpty())) {
+                    products = productDAO.listAll();
+                } else {
+                    products = productDAO.searchProducts(search.trim(), range, discount);
+                }
+                
+                if (sort != null && !sort.isEmpty()) {
+                    products = productDAO.sortByPrice(sort);
+                } else {
+                    products = productDAO.listAll();
+                }
+                
                 request.setAttribute("listProduct", products);
                 request.setAttribute("search", search);
+                request.setAttribute("range", range);
+                request.setAttribute("discount", discount);
+                request.setAttribute("sort", sort);
                 request.getRequestDispatcher("ListProduct.jsp").forward(request, response);
             } else if ("UpdateProduct".equals(action)) {
                 String productId = request.getParameter("productId");
                 Product x = new ProductDAO().getObjectById(productId);
+                List<Category> types = new CategoryDAO().listAll();
+                request.setAttribute("types", types);
                 request.setAttribute("productId", x);
                 request.getRequestDispatcher("UpdateProduct.jsp").forward(request, response);
             } else if ("ViewProduct".equals(action)) {

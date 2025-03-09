@@ -33,7 +33,7 @@
                 <input type="hidden" name="action" value="UpdateProduct">
                 <div class="form-group">
                     <label for="productId" class="block font-medium text-gray-100">Product ID: </label>
-                    <input type="text" name="productId" value="<%= x.getProductId() %>" class="w-full px-4 py-2 mt-4 border border-gray-100 rounded-lg 
+                    <input type="text" name="productId" required value="<%= x.getProductId() %>" class="w-full px-4 py-2 mt-4 border border-gray-100 rounded-lg 
                            focus:outline-none focus:ring-2 focus:ring-emerald-400 transition duration-500 ease-in-out placeholder-gray-400 text-gray-100">
                 </div>
                 <div class="form-group">
@@ -60,12 +60,9 @@
                 <div class="form-group">
                     <label for="typeId" class="block font-medium text-gray-100">Type: </label>
                     <select name="typeId" class="w-full p-2 border rounded-lg bg-gray-700 border-gray-600 mt-4 text-gray-100">
-                        <option value="1" <%= (x.getType().getTypeId() == 1) ? "selected" : "" %>>Dụng cụ nhà bếp</option>
-                        <option value="2" <%= (x.getType().getTypeId() == 2) ? "selected" : "" %>>Điện gia dụng</option>
-                        <option value="3" <%= (x.getType().getTypeId() == 3) ? "selected" : "" %>>Trang trí nội thất</option>
-                        <option value="4" <%= (x.getType().getTypeId() == 4) ? "selected" : "" %>>Dụng cụ thể thao</option>
-                        <option value="5" <%= (x.getType().getTypeId() == 5) ? "selected" : "" %>>Thiết bị thông minh</option>
-                        <option value="6" <%= (x.getType().getTypeId() == 6) ? "selected" : "" %>>Quần - Áo thời trang</option>
+                        <c:forEach var="type" items="${types}">
+                            <option value="${type.typeId}">${type.categoryName}</option>
+                        </c:forEach>
                     </select>
                 </div>
                 <div class="form-group">

@@ -55,12 +55,9 @@
                     <label for="typeId" class="block font-medium text-gray-100">Type: </label>
                     <select name="typeId" class="w-full p-2 border rounded-lg 
                             bg-gray-700 border-gray-600 mt-4 text-gray-100">
-                        <option value="1">Dụng cụ nhà bếp</option>
-                        <option value="2">Điện gia dụng</option>
-                        <option value="3">Trang trí nội thất</option>
-                        <option value="4">Dụng cụ thể thao</option>
-                        <option value="5">Thiết bị thông minh</option>
-                        <option value="6">Quần - Áo thời trang</option>
+                        <c:forEach var="type" items="${types}">
+                            <option value="${type.typeId}">${type.categoryName}</option>
+                        </c:forEach>
                     </select>
                 </div>
                 <div class="form-group">
