@@ -16,7 +16,7 @@
         <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
     </head>
     <body>
-        <%@include file="Header.jspf" %>
+        <%@include file="/public/Header.jspf" %>
         <div class="mx-auto p-6 bg-gray-800 shadow-lg min-h-screen">
             <h1 class="text-3xl font-bold mt-4 mb-8 text-gray-100 text-center">ADD NEW ACCOUNT</h1>
             <form action="MainController" method="POST" class="space-y-4 border-2 border-white p-4 max-w-3xl mx-auto">

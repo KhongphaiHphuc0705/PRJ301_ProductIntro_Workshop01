@@ -49,7 +49,7 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getRequestDispatcher("Login.jsp").forward(request, response);
+        request.getRequestDispatcher("/public/Login.jsp").forward(request, response);
     }
 
     /**
@@ -75,7 +75,7 @@ public class LoginController extends HttpServlet {
                 request.getRequestDispatcher("index.jsp").forward(request, response);
             } else {
                 request.setAttribute("error", "Invalid login information.");
-                request.getRequestDispatcher("Login.jsp").forward(request, response);
+                request.getRequestDispatcher("/public/Login.jsp").forward(request, response);
             }
         } catch (Exception e) {
             e.printStackTrace();

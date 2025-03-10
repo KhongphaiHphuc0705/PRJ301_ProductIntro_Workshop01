@@ -71,17 +71,17 @@ public class CategoryController extends HttpServlet {
         CategoryDAO categoryDAO = new CategoryDAO();
         try {
             if ("AddCategory".equals(action)) {
-                request.getRequestDispatcher("AddCategory.jsp").forward(request, response);
+                request.getRequestDispatcher("/private/AddCategory.jsp").forward(request, response);
             } else if ("ListCategory".equals(action)) {
                 List<Category> listCategory = categoryDAO.listAll();
                 HttpSession session = request.getSession();
                 session.setAttribute("listCategory", listCategory);
-                request.getRequestDispatcher("ListCategory.jsp").forward(request, response);
+                request.getRequestDispatcher("/private/ListCategory.jsp").forward(request, response);
             } else if ("UpdateCategory".equals(action)) {
                 String typeId = request.getParameter("typeId");
                 Category x = categoryDAO.getObjectById(typeId);
                 request.setAttribute("typeId", x);
-                request.getRequestDispatcher("UpdateCategory.jsp").forward(request, response);
+                request.getRequestDispatcher("/private/UpdateCategory.jsp").forward(request, response);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -124,7 +124,7 @@ public class CategoryController extends HttpServlet {
                     response.sendRedirect("MainController?action=ListCategory");
                 } else {
                     request.setAttribute("error", "Update failed!");
-                    request.getRequestDispatcher("UpdateCategory.jsp").forward(request, response);
+                    request.getRequestDispatcher("/private/UpdateCategory.jsp").forward(request, response);
                 }
             }
         } catch (Exception e) {

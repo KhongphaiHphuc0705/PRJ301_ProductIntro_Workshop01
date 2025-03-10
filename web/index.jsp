@@ -17,6 +17,6 @@
         <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
     </head>
     <body class="bg-gray-800">
-        <%@include file="Header.jspf" %>
+        <%@include file="/public/Header.jspf" %>
     </body>
 </html>

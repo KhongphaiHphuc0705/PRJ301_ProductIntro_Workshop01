@@ -1,7 +1,7 @@
 <%-- any content can be specified here e.g.: --%>
 <%@ page pageEncoding="UTF-8" %>
 <c:if test="${sessionScope.loginUser == null}">
-    <jsp:forward page="Login.jsp"></jsp:forward>
+    <jsp:forward page="/public/Login.jsp"></jsp:forward>
 </c:if>
 <nav class="bg-gray-900 text-white px-8 py-4 flex items-center justify-between">
   <div class="text-gray-400 flex items-center space-x-3 w-full">

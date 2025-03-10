@@ -24,7 +24,7 @@
         <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
     </head>
     <body>
-        <%@include file="Header.jspf" %>
+        <%@include file="/public/Header.jspf" %>
         <div class="mx-auto p-6 bg-gray-800 shadow-lg min-h-screen">
             <h1 class="text-3xl font-bold mt-4 mb-8 text-gray-100 text-center">
                 UPDATE ACCOUNT

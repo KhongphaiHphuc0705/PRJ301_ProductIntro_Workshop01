@@ -86,14 +86,14 @@ public class AccountController extends HttpServlet {
 
                 request.setAttribute("listAccount", accounts);
                 request.setAttribute("search", search);
-                request.getRequestDispatcher("ListAccount.jsp").forward(request, response);
+                request.getRequestDispatcher("/private/ListAccount.jsp").forward(request, response);
             } else if ("UpdateAccount".equals(action)) {
                 String account = request.getParameter("account");
                 Account x = new AccountDAO().getObjectById(account);
                 request.setAttribute("account", x);
-                request.getRequestDispatcher("UpdateAccount.jsp").forward(request, response);
+                request.getRequestDispatcher("/private/UpdateAccount.jsp").forward(request, response);
             } else if ("AddAccount".equals(action)) {
-                request.getRequestDispatcher("AddAccount.jsp").forward(request, response);
+                request.getRequestDispatcher("/private/AddAccount.jsp").forward(request, response);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -152,13 +152,13 @@ public class AccountController extends HttpServlet {
                     response.sendRedirect("MainController?action=ListAccount");
                 } else {
                     request.setAttribute("error", "Update failed!");
-                    request.getRequestDispatcher("UpdateAccount.jsp").forward(request, response);
+                    request.getRequestDispatcher("/private/UpdateAccount.jsp").forward(request, response);
                 }
             }
         } catch (Exception e) {
             e.printStackTrace();
             request.setAttribute("error", "Error processing request");
-            request.getRequestDispatcher("ListAccount.jsp").forward(request, response);
+            request.getRequestDispatcher("/private/ListAccount.jsp").forward(request, response);
         }
     }
 

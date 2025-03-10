@@ -78,13 +78,13 @@ public class ProductController extends HttpServlet {
             if ("AddProduct".equals(action)) {
                 List<Category> types = new CategoryDAO().listAll();
                 request.setAttribute("types", types);
-                request.getRequestDispatcher("AddProduct.jsp").forward(request, response);
+                request.getRequestDispatcher("/private/AddProduct.jsp").forward(request, response);
             } else if ("ListProduct".equals(action)) {
                 String search = request.getParameter("search");
                 String range = request.getParameter("range");
                 String discount = request.getParameter("discount");
                 String sort = request.getParameter("sort");
-                
+                System.out.println("Search: " + search + ", range: " + range + ", discount: " + discount);
                 List<Product> products;
                 if ((search == null || search.trim().isEmpty()) &&
                     (range == null || range.isEmpty()) &&
@@ -96,8 +96,6 @@ public class ProductController extends HttpServlet {
                 
                 if (sort != null && !sort.isEmpty()) {
                     products = productDAO.sortByPrice(sort);
-                } else {
-                    products = productDAO.listAll();
                 }
                 
                 request.setAttribute("listProduct", products);
@@ -105,20 +103,19 @@ public class ProductController extends HttpServlet {
                 request.setAttribute("range", range);
                 request.setAttribute("discount", discount);
                 request.setAttribute("sort", sort);
-                request.getRequestDispatcher("ListProduct.jsp").forward(request, response);
+                request.getRequestDispatcher("/public/ListProduct.jsp").forward(request, response);
             } else if ("UpdateProduct".equals(action)) {
                 String productId = request.getParameter("productId");
                 Product x = new ProductDAO().getObjectById(productId);
                 List<Category> types = new CategoryDAO().listAll();
                 request.setAttribute("types", types);
                 request.setAttribute("productId", x);
-                request.getRequestDispatcher("UpdateProduct.jsp").forward(request, response);
+                request.getRequestDispatcher("/private/UpdateProduct.jsp").forward(request, response);
             } else if ("ViewProduct".equals(action)) {
                 String productId = request.getParameter("productId");
                 Product product = productDAO.getObjectById(productId);
                 request.setAttribute("product", product);
-                System.out.println("Product loaded: " + product);
-                request.getRequestDispatcher("ViewProduct.jsp").forward(request, response);
+                request.getRequestDispatcher("/public/ViewProduct.jsp").forward(request, response);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -186,7 +183,7 @@ public class ProductController extends HttpServlet {
                     response.sendRedirect("MainController?action=ListProduct");
                 } else {
                     request.setAttribute("error", "Update failed!");
-                    request.getRequestDispatcher("UpdateProduct.jsp").forward(request, response);
+                    request.getRequestDispatcher("/private/UpdateProduct.jsp").forward(request, response);
                 }
             }
         } catch (Exception e) {
