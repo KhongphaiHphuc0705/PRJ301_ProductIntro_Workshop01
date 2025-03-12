@@ -252,6 +252,12 @@ public class ProductDAO implements Accessible<Product> {
         }
         return list;
     }
+    
+    public String getPriceRange(int price) {
+        if (price < 5000000) return "low";
+        else if (price <= 15000000) return "medium";
+        else return "high";
+    }
 
     @Override
     public List<Product> listAll() {

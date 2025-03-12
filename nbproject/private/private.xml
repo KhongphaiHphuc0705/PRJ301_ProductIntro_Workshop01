@@ -3,11 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Hphucc/Sem4_SP2025/PRJ301/Workshop01_Copy/web/public/Login.jsp</file>
+            <file>file:/D:/Hphucc/Sem4_SP2025/PRJ301/Workshop01_Copy/src/java/controller/ProductController.java</file>
             <file>file:/D:/Hphucc/Sem4_SP2025/PRJ301/Workshop01_Copy/src/java/filter/AuthFilter.java</file>
             <file>file:/D:/Hphucc/Sem4_SP2025/PRJ301/Workshop01_Copy/web/public/ListProduct.jsp</file>
             <file>file:/D:/Hphucc/Sem4_SP2025/PRJ301/Workshop01_Copy/src/java/model/dao/ProductDAO.java</file>
-            <file>file:/D:/Hphucc/Sem4_SP2025/PRJ301/Workshop01_Copy/web/AccessDenied.jsp</file>
         </group>
     </open-files>
 </project-private>

@@ -6,6 +6,7 @@
 package model.dto;
 
 import java.sql.Date;
+import java.util.Objects;
 
 /**
  *
@@ -117,5 +118,22 @@ public class Product {
 
     public void setDiscount(int discount) {
         this.discount = discount;
+    }
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        Product product = (Product) obj;
+        return this.productId.equals(product.productId); // Compare by ID
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(productId);
     }
 }

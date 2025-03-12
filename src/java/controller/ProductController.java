@@ -9,12 +9,14 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.dao.AccountDAO;
 import model.dao.CategoryDAO;
 import model.dao.ProductDAO;
@@ -84,7 +86,7 @@ public class ProductController extends HttpServlet {
                 String range = request.getParameter("range");
                 String discount = request.getParameter("discount");
                 String sort = request.getParameter("sort");
-                System.out.println("Search: " + search + ", range: " + range + ", discount: " + discount);
+                
                 List<Product> products;
                 if ((search == null || search.trim().isEmpty()) &&
                     (range == null || range.isEmpty()) &&
@@ -98,7 +100,19 @@ public class ProductController extends HttpServlet {
                     products = productDAO.sortByPrice(sort);
                 }
                 
+                HttpSession session = request.getSession();
+                List<Product> recentlyViewed = (List<Product>) session.getAttribute("recentlyViewed");
+                List<Product> suggestions = new ArrayList<>();
+                if (recentlyViewed != null && !recentlyViewed.isEmpty()) {
+                    Product lastViewed = recentlyViewed.get(0);
+                    String priceRange = productDAO.getPriceRange(lastViewed.getPrice());
+                    
+                    suggestions = productDAO.searchProducts("", priceRange, "");
+                    suggestions.removeAll(recentlyViewed);
+                }
+                
                 request.setAttribute("listProduct", products);
+                request.setAttribute("suggestions", suggestions);
                 request.setAttribute("search", search);
                 request.setAttribute("range", range);
                 request.setAttribute("discount", discount);
@@ -114,6 +128,21 @@ public class ProductController extends HttpServlet {
             } else if ("ViewProduct".equals(action)) {
                 String productId = request.getParameter("productId");
                 Product product = productDAO.getObjectById(productId);
+                
+                if (product != null) {
+                    HttpSession session = request.getSession();
+                    List<Product> recentlyViewed = (List<Product>) session.getAttribute("recentlyViewed");
+                    if (recentlyViewed == null)
+                        recentlyViewed = new ArrayList<>();
+                    //Avoid duplicates
+                    recentlyViewed.remove(product);
+                    recentlyViewed.add(0, product);
+                    //Keep only the last 10 viewed products
+                    if (recentlyViewed.size() > 6)
+                        recentlyViewed.remove(recentlyViewed.size() - 1);
+                    session.setAttribute("recentlyViewed", recentlyViewed);
+                }
+                
                 request.setAttribute("product", product);
                 request.getRequestDispatcher("/public/ViewProduct.jsp").forward(request, response);
             }
