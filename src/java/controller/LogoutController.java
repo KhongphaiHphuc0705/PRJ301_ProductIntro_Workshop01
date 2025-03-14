@@ -36,7 +36,7 @@ public class LogoutController extends HttpServlet {
         //B1: Xóa toàn bộ thông tin có trong session của người dùng
         request.getSession().invalidate();
         //B2: Chuyển về login
-        request.getRequestDispatcher("Login").forward(request, response);
+        response.sendRedirect(request.getContextPath()+ "/Login");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

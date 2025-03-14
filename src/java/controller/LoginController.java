@@ -70,11 +70,13 @@ public class LoginController extends HttpServlet {
             String password = request.getParameter("pass").trim();
             Account x = new AccountDAO().loginSuccess(username, password);
             HttpSession session = request.getSession();
+//            System.out.println("Session ID after login: " + session.getId());
             if (x != null) {
                 session.setAttribute("loginUser", x);
-                request.getRequestDispatcher("index.jsp").forward(request, response);
+//                System.out.println("User: " + x);
+                response.sendRedirect(request.getContextPath());
             } else {
-                request.setAttribute("error", "Invalid login information.");
+                request.setAttribute("error", "Invalid login information or your account is inactivate");
                 request.getRequestDispatcher("/public/Login.jsp").forward(request, response);
             }
         } catch (Exception e) {

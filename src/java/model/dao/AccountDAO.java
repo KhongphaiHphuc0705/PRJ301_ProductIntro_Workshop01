@@ -241,6 +241,9 @@ public class AccountDAO implements Accessible<Account> {
             PreparedStatement cmd = con.prepareStatement(sqlString);
             ResultSet rs = cmd.executeQuery();
             if (rs.next()) {
+                if (!rs.getBoolean("isUse"))
+                    return null;
+                
                 Account x = new Account();
                 x.setAccount(rs.getString("account"));
                 x.setPass(rs.getString("pass"));

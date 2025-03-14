@@ -106,16 +106,23 @@ public class AuthFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse res = (HttpServletResponse) response;
         HttpSession session = req.getSession();
+//        System.out.println("Session ID in filter: " + session.getId());
         Account user = (session != null) ? (Account) session.getAttribute("loginUser") : null;
-        
-        String path = req.getServletPath();
-        if (path.contains("ListProduct") || path.contains("home")) {
+//        System.out.println("Login user: " + user);
+        String action = req.getParameter("action") != null ? req.getParameter("action") : "";
+//        System.out.println(action);
+        if (action.contains("ListProduct") || action.contains("home") || action.contains("ViewProduct") ||
+            req.getRequestURI().contains("/Login") || req.getRequestURI().contains("/Logout") ||
+            req.getServletPath().contains("index.jsp") || req.getRequestURI().contains("images")) {
             chain.doFilter(request, response);
             return;
         }
         
-        if (user == null && !req.getRequestURI().contains("/Login")) {
+        if (user == null) {
             res.sendRedirect(req.getContextPath() + "/Login");
+            return;
+        } else if (user.getRoleInSystem() != 1) {
+            res.sendError(HttpServletResponse.SC_FORBIDDEN);
             return;
         }
         
